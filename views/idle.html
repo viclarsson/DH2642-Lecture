@@ -1,0 +1,40 @@
+<div class="modal" ng-controller="idleCtrl" ng-class="{'is-active': !activeUser() }">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="container">
+            <div class="card idle-avatar" ng-repeat="p in persons()" ng-click="setActiveUser(p.id)">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="person-avatar" style="height: 40px; width: 40px; background: {{ p.color }}">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4">{{ p.name }}</p>
+                            <p class="subtitle is-6">{{ getCardsByPersonId(p.id).length }} ToDos pending</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card idle-avatar" id="add-person">
+                <div class="card-content">
+                    <form novalidate="true" name="addpersonform" ng-submit="addpersonform && addPerson()">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="person-avatar" style="height: 40px; width: 40px; background: {{ colors[color] }}" ng-click="toggleColor()"></figure>
+                            </div>
+                            <div class="media-content">
+                                <p class="control">
+                                    <input ng-model="person.name" class="input is-small" type="text" placeholder="Choose name...">
+                                </p>
+                                <small>Tap the square to choose color</small>
+                                <button type="submit" id="add-person-plus" ng-show="false">+</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

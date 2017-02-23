@@ -1,0 +1,180 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+a {
+    color: #222222;
+}
+
+a:hover {
+    color: rgba(0,0,0,0.5);
+}
+
+#sidebar, #card-scroll, #card-layout {
+    height: 100vh;
+    overflow: hidden;
+}
+
+#sidebar {
+    border-right: solid 1px #fafafa;
+    background: rgba(0,0,0,0.005);
+    padding: 0 60px !important;
+}
+
+#sidebar .person-content {
+    background: transparent;
+}
+
+#card-layout {
+    width: calc(100vw - 360px);
+}
+
+.person-container {
+    padding: 0 30px !important;
+    height: 100vh;
+    width: 300px !important;
+    overflow: scroll;
+    justify-content: space-between;
+    border-right: solid 1px #fafafa;
+}
+
+.add-card-form {
+    margin-bottom: 20px;
+}
+
+.person-content {
+    height: 75px;
+}
+
+.person-content .card-content {
+    background: transparent;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.add-icon .icon {
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+}
+
+.person-avatar {
+    border-radius: 3px;
+    width: 40px;
+    height: 40px;
+}
+
+.person-mini-avatar {
+    border-radius: 3px;
+    width: 20px;
+    height: 10px;
+}
+
+.card {
+    box-shadow: none;
+}
+
+.card .card-actions {
+    display: none;
+}
+
+.card.active .card-actions {
+    display: block;
+}
+
+.card small {
+    color: rgba(0,0,0,0.5);
+}
+
+.card-container .card {
+    margin-bottom: 20px;
+}
+
+.card-container .card-content {
+    background: #fafafa;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.card-text {
+    font-size: 12px;
+    max-height: 85px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-text::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    bottom: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fafafa+0,fafafa+100&0+0,1+100 */
+    background: -moz-linear-gradient(top, rgba(250,250,250,0) 0%, rgba(250,250,250,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(250,250,250,0) 0%,rgba(250,250,250,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(250,250,250,0) 0%,rgba(250,250,250,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00fafafa', endColorstr='#fafafa',GradientType=0 ); /* IE6-9 */
+}
+
+.card-actions {
+    padding: 10px 0 5px 0;
+}
+
+.card-actions .icon {
+    font-size: 2rem;
+    margin: 0 10px;
+}
+
+.card-container {
+    height: calc(100vh - 75px);
+    overflow: scroll;
+}
+
+#card-scroll {
+    overflow: scroll;
+    padding: 0 30px;
+}
+
+/*
+*   Idle
+*/
+
+.idle-avatar {
+    margin-bottom: 25px;
+}
+
+#add-person .control {
+    margin: 0;
+    margin-bottom: -2px;
+}
+#add-person small {
+    line-height: 1;
+}
+#add-person-plus {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+/*
+*   Modal
+*/
+.modal {
+    display: flex !important;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+.modal.is-active {
+    pointer-events: all;
+    opacity: 1;
+}

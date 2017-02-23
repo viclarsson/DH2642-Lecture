@@ -1,0 +1,15 @@
+<div ng-controller="addCardCtrl">
+    <form novalidate="true" name="addcardform" ng-submit="addcardform.$valid && addCard()" class="add-card-form" ng-show="activeAdd() == p.id">
+        <p class="control">
+            <textarea class="textarea" ng-model="card.text" placeholder="Textarea" ng-minlength="5" required></textarea>
+        </p>
+        <div class="control is-grouped">
+            <p class="control">
+                <input type="submit" class="button is-primary is-inverted" value="Add"/>
+            </p>
+            <p class="control">
+                <button class="button is-link" ng-click="toggleActiveAddId(p.id)">Cancel</button>
+            </p>
+        </div>
+    </form>
+</div>
