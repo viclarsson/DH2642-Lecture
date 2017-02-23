@@ -203,20 +203,20 @@
                 if(cards[i].id == id) {
                     console.log(cards[i]);
                     cards[i].status = 'done';
+                    saveData();
                     return;
                 }
             }
-            saveData();
         };
 
         var setPending = function(id) {
             for(var i in cards) {
                 if(cards[i].id == id) {
                     cards[i].status = 'pending';
+                    saveData();
                     return;
                 }
             }
-            saveData();
         };
 
         // Load initial data! (once)

@@ -82,14 +82,17 @@
 
     }]);
 
-    controllers.controller("sidebarCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
+    controllers.controller("sidebarCtrl", ['$scope', 'Card', 'Person', 'Idle', function($scope, Card, Person, Idle) {
         $scope.cards = Card.getDoneCards;
         $scope.getPersonById = Person.getPersonById;
         $scope.toggleActiveCard = Card.toggleActiveCard;
         $scope.activeCard = Card.getActiveCard;
         $scope.setPending = Card.setPending;
         $scope.setActiveUser = Person.setActiveUser;
-        
+
+        $scope.$on('IdleStart', function() {
+            Person.setActiveUser(null);
+        });
     }]);
 
 })();

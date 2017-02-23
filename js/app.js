@@ -1,6 +1,17 @@
 console.log("Bootstrapping application...");
 // The application module
-var app = angular.module("app", ['ui.router', 'app.controllers', 'app.services', 'app.directives', 'app.filters']);
+var app = angular.module("app", ['ui.router', 'ngIdle', 'app.controllers', 'app.services', 'app.directives', 'app.filters']);
+
+// Configure app!
+app.config(['IdleProvider', 'KeepaliveProvider', function(IdleProvider, KeepaliveProvider) {
+    IdleProvider.idle(30); // in seconds
+}]);
+
+// Run!
+app.run(['Idle', function(Idle) {
+    FastClick.attach(document.body);
+    Idle.watch();
+}]);
 
 // Modules for different components
 var controllers = angular.module("app.controllers", []);

@@ -21,7 +21,7 @@ a:hover {
 #sidebar {
     border-right: solid 1px #fafafa;
     background: rgba(0,0,0,0.005);
-    padding: 0 60px !important;
+    padding: 0 30px !important;
 }
 
 #sidebar .person-content {
@@ -29,7 +29,7 @@ a:hover {
 }
 
 #card-layout {
-    width: calc(100vw - 360px);
+    width: calc(100vw - 300px);
 }
 
 .person-container {
@@ -136,7 +136,7 @@ a:hover {
 
 #card-scroll {
     overflow: scroll;
-    padding: 0 30px;
+    padding: 0;
 }
 
 /*
