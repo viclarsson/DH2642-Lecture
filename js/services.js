@@ -94,14 +94,15 @@
                 persons.splice(index, 1);
                 // Remove all cards to the user
                 var cards = Card.getCards();
+                var removed = 0;
                 for(var j = cards.length-1; j >= 0; j--) {
                     var temp = cards[j];
-                    console.log(temp, temp.target == id || temp.owner == id);
                     if(temp.target == id || temp.owner == id) {
-                        console.log("Removing!");
+                        removed++;
                         Card.removeCardById(temp.id);
                     }
                 }
+                console.log(removed, "cards removed...");
             }
             // Call save data as data is changed!
             saveData();
