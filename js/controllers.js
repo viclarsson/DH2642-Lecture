@@ -61,7 +61,6 @@
         $scope.toggleColor = function() {
             $scope.color = $scope.color + 1;
             $scope.color = $scope.color % $scope.colors.length;
-            console.log($scope.color);
         };
 
         $scope.person = {

@@ -19,7 +19,7 @@
             <div ng-show="cards().length == 0">
                 <p class="has-text-centered">😱</p>
             </div>
-            <div class="card" ng-repeat="c in cards()" ng-click="toggleActiveCard(c.id)" ng-class="{'active': activeCard() == c.id }">
+            <div class="card" ng-repeat="c in cards() track by $index" ng-click="toggleActiveCard(c.id)" ng-class="{'active': activeCard() == c.id }">
                 <div class="card-content">
                     <div class="content">
                         <figure class="person-mini-avatar" style="background: {{ getPersonById(c.owner).color }}"></figure>
@@ -38,7 +38,7 @@
 
         <div class="columns is-gapless" id="card-scroll">
 
-            <div ng-repeat="p in persons()" class="column is-one-quarter person-container">
+            <div ng-repeat="p in persons() track by $index" class="column is-one-quarter person-container">
                 <div class="card person-content">
                     <div class="card-content">
                         <div class="media">
@@ -56,11 +56,12 @@
                     </div>
                 </div>
                 <div class="card-container">
+                    <!-- Uses parent scope -->
                     <div ng-include="'views/partials/add-card-form.html'"></div>
                     <div ng-show="getCardsByPersonId(p.id).length == 0">
                         <p class="has-text-centered">😇</p>
                     </div>
-                    <div class="card" ng-repeat="c in getCardsByPersonId(p.id)" ng-click="toggleActiveCard(c.id)" ng-class="{'active': activeCard() == c.id }">
+                    <div class="card" ng-repeat="c in getCardsByPersonId(p.id) track by $index" ng-click="toggleActiveCard(c.id)" ng-class="{'active': activeCard() == c.id }">
                         <div class="card-content">
                             <div class="content">
                                 <figure class="person-mini-avatar" style="background: {{ getPersonById(c.owner).color }}"></figure>
@@ -82,7 +83,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

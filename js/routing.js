@@ -15,20 +15,6 @@
         .state('active', {
             url: "/",
             templateUrl: 'views/active.html'
-        })
-        /*
-        *   Idle state: When sitting on the refrigerator in idle state
-        */
-        .state('idle', {
-            url: "/idle",
-            templateUrl: 'views/idle.html'
-        })
-        /*
-        *   Add state: When someone is adding cards
-        */
-        .state('add', {
-            url: "/add",
-            templateUrl: 'views/add.html'
         });
     }]);
 
