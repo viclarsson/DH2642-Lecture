@@ -1,6 +1,8 @@
 (function() {
     console.log("Initializing routing...");
 
+    // No other routes needed but good if developing further.
+
     app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
         // Nothing and only slash should both go to index

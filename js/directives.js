@@ -72,7 +72,7 @@
                 data: "=" // Assign attribute data to the isolated scope
             }, // Isolated scope.
             templateUrl: 'views/partials/person-header.html',
-            controller: 'personCtrl'
+            controller: 'personHeaderCtrl'
         };
     }]);
 

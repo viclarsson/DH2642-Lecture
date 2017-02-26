@@ -1,13 +1,18 @@
 (function() {
     console.log("Initializing controllers...");
 
+    /*
+    *   Controller for listing the persons and cards.
+    */
     controllers.controller("cardsCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
         $scope.persons = Person.getPersons;
         $scope.getCardsByPersonId = Card.getCardsByPersonId;
     }]);
 
+    /*
+    *   Controller for each card.
+    */
     controllers.controller("cardCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
-
         $scope.activeUser = Person.getActiveUser;
         $scope.getPersonById = Person.getPersonById;
         $scope.toggleActiveCard = Card.toggleActiveCard;
@@ -25,6 +30,9 @@
 
     }]);
 
+    /*
+    *   Controller for adding cards
+    */
     controllers.controller("addCardCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
         $scope.activeAdd = Person.getActiveAddId;
         $scope.activeUser = Person.getActiveUser;
@@ -36,7 +44,6 @@
         };
 
         $scope.addCard = function() {
-            console.log("Adding!", $scope.card, $scope.activeAdd());
             Card.addCard($scope.card.text, $scope.card.priority, $scope.activeAdd(), $scope.activeUser());
             $scope.card = {
                 text: "",
@@ -46,12 +53,18 @@
         };
     }]);
 
-    controllers.controller("personCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
+    /*
+    *   Controller for person header
+    */
+    controllers.controller("personHeaderCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
         $scope.activeUser = Person.getActiveUser;
         $scope.getCardsByPersonId = Card.getCardsByPersonId;
         $scope.toggleActiveAddId = Person.toggleActiveAddId;
     }]);
 
+    /*
+    *   Controller for idle state.
+    */
     controllers.controller("idleCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
         $scope.activeUser = Person.getActiveUser;
         $scope.setActiveUser = Person.setActiveUser;
@@ -92,6 +105,9 @@
 
     }]);
 
+    /*
+    *    Controller for sidebar with done todos.
+    */
     controllers.controller("sidebarCtrl", ['$scope', 'Card', 'Person', 'Idle', function($scope, Card, Person, Idle) {
         $scope.cards = Card.getDoneCards;
         $scope.setActiveUser = Person.setActiveUser;

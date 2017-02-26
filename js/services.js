@@ -34,7 +34,6 @@
 
         // Toggle the active person id which a user is currently adding to
         var toggleActiveAddId = function(id) {
-            console.log("Setting active add:", id);
             if(addId == id) {
                 addId = null;
             } else {
@@ -157,7 +156,6 @@
 
         // Toggle active card (when same id is provided, set null!)
         var toggleActiveCard = function(id) {
-            console.log("Setting active card:", id);
             if(activeCard == id) {
                 activeCard = null;
             } else {
@@ -240,7 +238,6 @@
         var setDone = function(id) {
             for(var i in cards) {
                 if(cards[i].id == id) {
-                    console.log(cards[i]);
                     cards[i].status = 'done';
                     // Call save data as data is changed!
                     saveData();
