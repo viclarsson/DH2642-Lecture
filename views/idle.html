@@ -1,8 +1,11 @@
-<div class="modal" ng-controller="idleCtrl" ng-class="{'is-active': !activeUser() }">
+<div class="modal" ng-class="{'is-active': !activeUser() }">
     <div class="modal-background"></div>
     <div class="modal-content">
         <div class="container">
-            <div class="card idle-avatar" ng-repeat="p in persons()" ng-click="setActiveUser(p.id)">
+            <div class="content has-text-centered" ng-show="persons().length > 0">
+                <p>Press and hold to remove a person.</p>
+            </div>
+            <div class="card idle-avatar" ng-repeat="p in persons()" ng-click="setActiveUser(p.id)" on-long-click="removePerson(p.id)">
                 <div class="card-content">
                     <div class="media">
                         <div class="media-left">
@@ -11,7 +14,7 @@
                         </div>
                         <div class="media-content">
                             <p class="title is-4">{{ p.name }}</p>
-                            <p class="subtitle is-6">{{ getCardsByPersonId(p.id).length }} ToDos pending</p>
+                            <p count-todos="getCardsByPersonId(p.id).length" count-todos-suffix="'pending'" class="subtitle is-6"></p>
                         </div>
                     </div>
                 </div>

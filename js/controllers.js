@@ -2,21 +2,18 @@
     console.log("Initializing controllers...");
 
     controllers.controller("cardsCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
-
         $scope.persons = Person.getPersons;
-        $scope.activeUser = Person.getActiveUser;
         $scope.getCardsByPersonId = Card.getCardsByPersonId;
+    }]);
+
+    controllers.controller("cardCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
+
+        $scope.activeUser = Person.getActiveUser;
         $scope.getPersonById = Person.getPersonById;
         $scope.toggleActiveCard = Card.toggleActiveCard;
         $scope.activeCard = Card.getActiveCard;
         $scope.setPending = Card.setPending;
-        $scope.toggleActiveAddId = Person.toggleActiveAddId;
-
-
-        $scope.setDone = function(id) {
-            console.log("Setting done:", id);
-            Card.setDone(id);
-        };
+        $scope.setDone = Card.setDone;
 
         $scope.removeCard = function(id) {
             console.log("Removing:", id);
@@ -49,6 +46,12 @@
         };
     }]);
 
+    controllers.controller("personCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
+        $scope.activeUser = Person.getActiveUser;
+        $scope.getCardsByPersonId = Card.getCardsByPersonId;
+        $scope.toggleActiveAddId = Person.toggleActiveAddId;
+    }]);
+
     controllers.controller("idleCtrl", ['$scope', 'Card', 'Person', function($scope, Card, Person) {
         $scope.activeUser = Person.getActiveUser;
         $scope.setActiveUser = Person.setActiveUser;
@@ -79,14 +82,18 @@
             $scope.color = 0;
         };
 
+        $scope.removePerson = function(id) {
+            console.log("Removing:", id);
+            var r = confirm("Are you sure?");
+            if(r) {
+                Person.removePersonById(id);
+            }
+        };
+
     }]);
 
     controllers.controller("sidebarCtrl", ['$scope', 'Card', 'Person', 'Idle', function($scope, Card, Person, Idle) {
         $scope.cards = Card.getDoneCards;
-        $scope.getPersonById = Person.getPersonById;
-        $scope.toggleActiveCard = Card.toggleActiveCard;
-        $scope.activeCard = Card.getActiveCard;
-        $scope.setPending = Card.setPending;
         $scope.setActiveUser = Person.setActiveUser;
 
         $scope.$on('IdleStart', function() {

@@ -4,7 +4,7 @@
     /*
     *   Person Model
     */
-    services.factory('Person', [function() {
+    services.factory('Person', ['Card', function(Card) {
         // Sample data!
         var DATA_KEY = "PERSON_MODEL";
         var addId = null;
@@ -92,6 +92,16 @@
             if(index) {
                 // Remove the index-th from the persons array
                 persons.splice(index, 1);
+                // Remove all cards to the user
+                var cards = Card.getCards();
+                for(var j = cards.length-1; j >= 0; j--) {
+                    var temp = cards[j];
+                    console.log(temp, temp.target == id || temp.owner == id);
+                    if(temp.target == id || temp.owner == id) {
+                        console.log("Removing!");
+                        Card.removeCardById(temp.id);
+                    }
+                }
             }
             // Call save data as data is changed!
             saveData();

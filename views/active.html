@@ -1,13 +1,15 @@
-<div ng-include="'views/idle.html'"></div>
+<idle-modal></idle-modal>
 
 <div class="columns is-gapless">
+
+    <!-- Sidebar with cards which are done -->
     <div id="sidebar" class="column" ng-controller="sidebarCtrl">
         <div class="card person-content">
             <div class="card-content">
                 <div class="media">
                     <div class="media-content">
                         <p class="title is-4">Done</p>
-                        <p class="subtitle is-6">{{ cards().length }} ToDo's done!</p>
+                        <p count-todos="cards().length" count-todos-suffix="'done'" class="subtitle is-6"></p>
                     </div>
                     <div class="media-right add-icon">
                         <a class="icon" ng-click="setActiveUser(null)"><i class="fa fa-user-circle"></i></a>
@@ -19,68 +21,21 @@
             <div ng-show="cards().length == 0">
                 <p class="has-text-centered">😱</p>
             </div>
-            <div class="card" ng-repeat="c in cards() track by $index" ng-click="toggleActiveCard(c.id)" ng-class="{'active': activeCard() == c.id }">
-                <div class="card-content">
-                    <div class="content">
-                        <figure class="person-mini-avatar" style="background: {{ getPersonById(c.owner).color }}"></figure>
-                        <small>{{ c.added | date:"yyyy-MM-dd 'at' H:mm"}}</small>
-                        <div class="card-text">{{ c.text }}</div>
-                        <div class="card-actions has-text-centered">
-                            <a ng-click="setPending(c.id)" class="icon"><i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <card ng-repeat="c in cards() track by $index" data="c"></card>
         </div>
     </div>
 
+    <!-- Main content with all persons and pending cards -->
     <div id="card-layout" class="column is-gapless is-three-quarters" ng-controller="cardsCtrl">
-
         <div class="columns is-gapless" id="card-scroll">
-
             <div ng-repeat="p in persons() track by $index" class="column is-one-quarter person-container">
-                <div class="card person-content">
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-left">
-                                <figure class="person-avatar" style="background: {{ p.color }}"></figure>
-                            </div>
-                            <div class="media-content">
-                                <p class="title is-4">{{ p.name }} <span ng-show="p.id == activeUser()">(You)</span></p>
-                                <p class="subtitle is-6">{{ getCardsByPersonId(p.id).length }} todos</p>
-                            </div>
-                            <div class="media-right add-icon">
-                                <a class="icon" ng-click="toggleActiveAddId(p.id)"><i class="fa fa-plus-circle"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <person-header data="p"></person-header>
                 <div class="card-container">
-                    <!-- Uses parent scope -->
-                    <div ng-include="'views/partials/add-card-form.html'"></div>
+                    <add-card></add-card>
                     <div ng-show="getCardsByPersonId(p.id).length == 0">
                         <p class="has-text-centered">😇</p>
                     </div>
-                    <div class="card" ng-repeat="c in getCardsByPersonId(p.id) track by $index" ng-click="toggleActiveCard(c.id)" ng-class="{'active': activeCard() == c.id }">
-                        <div class="card-content">
-                            <div class="content">
-                                <figure class="person-mini-avatar" style="background: {{ getPersonById(c.owner).color }}"></figure>
-                                <small>{{ c.added | date:"yyyy-MM-dd 'at' H:mm"}}</small>
-                                <div class="card-text">
-                                    {{ c.text }}
-                                </div>
-                                <div class="card-actions has-text-centered">
-                                    <div ng-show="activeUser() == c.target || activeUser() == c.owner">
-                                        <a class="icon" ng-click="removeCard(c.id)"><i class="fa fa-minus-circle"></i></a>
-                                        <a class="icon" ng-click="setDone(c.id)"><i class="fa fa-check-circle"></i></a>
-                                    </div>
-                                    <div ng-show="activeUser() != c.target && activeUser() != c.owner" class="has-text-centered">
-                                        <small>You are not allowed to edit this card...</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <card ng-repeat="c in getCardsByPersonId(p.id) track by $index" data="c"></card>
                 </div>
             </div>
         </div>

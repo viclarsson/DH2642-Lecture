@@ -1,0 +1,25 @@
+<div class="card" ng-click="toggleActiveCard(data.id)" ng-class="{'active': activeCard() == data.id }">
+    <div class="card-content">
+        <div class="content">
+            <figure class="person-mini-avatar" style="background: {{ getPersonById(data.owner).color }}"></figure>
+            <small>{{ data.added | date:"yyyy-MM-dd 'at' H:mm"}}</small>
+            <div class="card-text">
+                {{ data.text }}
+            </div>
+            <div class="card-actions has-text-centered">
+                <div ng-show="data.status == 'done'">
+                    <a ng-click="setPending(data.id)" class="icon"><i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+                <div ng-show="data.status == 'pending'">
+                    <div ng-show="activeUser() == data.target || activeUser() == data.owner">
+                        <a class="icon" ng-click="removeCard(data.id)"><i class="fa fa-minus-circle"></i></a>
+                        <a class="icon" ng-click="setDone(data.id)"><i class="fa fa-check-circle"></i></a>
+                    </div>
+                    <div ng-show="activeUser() != data.target && activeUser() != data.owner" class="has-text-centered">
+                        <small>You are not allowed to edit this card...</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

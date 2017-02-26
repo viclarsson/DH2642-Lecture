@@ -1,0 +1,16 @@
+<div class="card person-content">
+    <div class="card-content">
+        <div class="media">
+            <div class="media-left">
+                <figure class="person-avatar" style="background: {{ data.color }}"></figure>
+            </div>
+            <div class="media-content">
+                <p class="title is-4">{{ data.name }} <span ng-show="data.id == activeUser()">(You)</span></p>
+                <p count-todos="getCardsByPersonId(data.id).length" class="subtitle is-6"></p>
+            </div>
+            <div class="media-right add-icon">
+                <a class="icon" ng-click="toggleActiveAddId(data.id)"><i class="fa fa-plus-circle"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
